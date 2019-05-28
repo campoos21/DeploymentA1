@@ -82,43 +82,43 @@ def ple(resv):
 
 @login_required
 def reservation(request):
-    try:
-    	viewedrestaurants = _check_session(request)
-        if request.method == "POST":
-            form = ReservationForm(request.POST)
-            if form.is_valid():
-                    resv = form.save(commit=False)
-                    restaurant_number = request.session["reserved_restaurant"]
-                    resv.restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
-                    resv.user = request.user
-                    if(ple(resv)):
-                    	request.session["result"] = "NOT_OK"
-                    	#"Netejar" variables com ferho xd xd
-                    else:
-	                    resv.save()
-	                    request.session["reservation"] = resv.id
-	                    request.session["result"] = "OK"
-	                    #"Netejar" variables com ferho xd xd
+	try:
+		viewedrestaurants = _check_session(request)
+		if request.method == "POST":
+			form = ReservationForm(request.POST)
+			if form.is_valid():
+				resv = form.save(commit=False)
+				restaurant_number = request.session["reserved_restaurant"]
+				resv.restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
+				resv.user = request.user
+				if(ple(resv)):
+					request.session["result"] = "NOT_OK"
+					#"Netejar" variables com ferho xd xd
+				else:
+					resv.save()
+					request.session["reservation"] = resv.id
+					request.session["result"] = "OK"
+					#"Netejar" variables com ferho xd xd
 
-            else:
-                  request.session["result"] = form.errors
-            return HttpResponseRedirect(reverse('checkout'))
+			else:
+				request.session["result"] = form.errors
+				return HttpResponseRedirect(reverse('checkout'))
 
-        elif request.method == "GET":
-            restaurant_number = request.GET["reservation"]
-            restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
-            request.session["reserved_restaurant"] = restaurant_number
+		elif request.method == "GET":
+			restaurant_number = request.GET["reservation"]
+			restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
+			request.session["reserved_restaurant"] = restaurant_number
 
-            form = ReservationForm()
-            context = {
-                'restaurant': restaurant,
-                'viewedrestaurants': viewedrestaurants,
-                'form': form
-            }
+		form = ReservationForm()
+		context = {
+			'restaurant': restaurant,
+			'viewedrestaurants': viewedrestaurants,
+			'form': form
+		}
 
-    except Restaurant.DoesNotExist:
-        return HttpResponse("Restaurant Does not exists")
-    return render(request, 'forkilla/reservation.html', context)
+	except Restaurant.DoesNotExist:
+		return HttpResponse("Restaurant Does not exists")
+	return render(request, 'forkilla/reservation.html', context)
 
 def _check_session(request):
 
