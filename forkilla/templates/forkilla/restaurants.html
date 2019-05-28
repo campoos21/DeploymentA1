@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
+
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+<div class = "row">
+    <div class="col-6 col-md-2" >
+        {% if category%}
+            <table class="table" style="margin-top:30%">
+                <tbody><tr><td align="center">
+            <form action="/forkilla" method="get">
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Forkilla </button>
+            </form>
+            </td></tr>
+            <tr><td align="center">
+            <form action="/forkilla/restaurants/{{city}}" method="get">
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> {{city}} </button>
+            </form>
+            </td></tr><tr><td></td></tr></tbody></table>
+        {% elif city%}
+            <table class="table" style="margin-top:30%">
+                <tbody><tr><td align="center">
+            <form action="/forkilla" method="get">
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Forkilla </button>
+            </form>
+            </td></tr><tr><td></td></tr></tbody></table>
+        {%else%}
+            <table class="table" style="margin-top:30%">
+                <tbody><tr><td align="center">
+            <form action="/forkilla" method="get">
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Forkilla </button>
+            </form>
+            </td></tr><tr><td></td></tr></tbody></table>
+        {% endif %}
+    </div>
+    <div class="col-6 col-md-6">
+        {% if restaurants %}
+            <h2>Restaurants</h2>
+            <ul>
+            <form action="{% url 'reservation'%}" method="get">
+             {% for restaurant in restaurants %}
+                <a href="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}"> {{restaurant.get_human_category}}</a> <br>
+               <a href="{% url 'detail' restaurant.restaurant_number%}"> {{restaurant.name}} </a> : {{restaurant.menu_description}}
+                <button type="submit" name="reservation" value={{restaurant.restaurant_number}} class="btn btn-outline-primary"> Reserva</button>
+                <br>
+            {% endfor %}
+            </form>
+            </ul>
+            {% else %}
+            <p>No restaurants are available.</p>
+        {% endif %}
+    </div>
+    <div class="col-6 col-md-4">
+    </div>
+</div>
+{% endblock %}
+</body>

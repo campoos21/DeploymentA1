@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
+
+{% extends 'forkilla/base.html' %}
+
+{% block content %}
+
+<div class = "row">
+    <div class="col-6 col-md-2" >
+    	<table class="table" style="margin-top:30%">
+            <tbody><tr><td align="center">
+        <form action="/forkilla/restaurants" method="get">
+            <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Restaurants </button>
+        </form>
+        </td></tr><tr><td></td></tr></tbody></table>
+    </div>
+    <div class="col-6 col-md-6">
+    	<h2>Promoted Restaurants</h2>
+		<ul>
+        {% for restaurant in restaurants %}
+            <a href="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}"> {{restaurant.get_human_category}}</a> <br>
+            <a href="{% url 'detail' restaurant.restaurant_number%}"> {{restaurant.name}} </a> : {{restaurant.menu_description}}
+            <br>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="col-6 col-md-4">
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
+{% extends 'forkilla/base.html' %}
+
+{% block content %}
+{% if restaurant %}
+<div class = "row">
+<div class="col-6 col-md-2" >
+<table class="table" style="margin-top:30%">
+    <tbody><tr><td align="center">
+<form action="/forkilla" method="get">
+    <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Forkilla </button>
+</form>
+</td></tr>
+<tr><td align="center">
+<form action="/forkilla/restaurants/{{restaurant.city}}" method="get">
+    <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> {{restaurant.city}} </button>
+</form>
+</td></tr>
+<tr><td align="center">
+<form action="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}" method="get">
+    <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> {{restaurant.category}} </button>
+</form>
+</td></tr><tr><td></td></tr></tbody></table>
+</div>
+
+<div class="col-6 col-md-6">
+    <h2 align="center"  style="color:#041CFA;"><b>{{restaurant.name}}:</b></h2>
+    {% load static %}
+    <img src="{% static foto_name %}" class="roumded mx-auto d-block" alt="Foto restaurant" width="400" height="300"/>
+    <br>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td align="center"><b>Menu</b></td>
+                <td align="center">{{restaurant.menu_description}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Preu mig</b></td>
+                <td align="center">{{restaurant.price_average}} &euro;</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Promocionat</b></td>
+                <td align="center"> {{restaurant.is_promot}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Puntuacio</b></td>
+                <td align="center">{{restaurant.rate}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Categoria</b></td>
+                <td align="center">{{restaurant.category}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Ciutat</b></td>
+                <td align="center"> {{restaurant.city}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Adreça</b></td>
+                <td align="center">{{restaurant.address}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Pais</b></td>
+                <td align="center">{{restaurant.country}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Numero id</b></td>
+                <td align="center">{{restaurant.restaurant_number}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+{% else %}
+    <p>No existeix cap restaurant amb aquest nom.</p>
+{% endif %}
+<div class="col-6 col-md-4">
+{% if reviews %}
+    <h3  style="color:#041CFA;"><b>Commentaris:</b></h3>
+    {% for review in reviews %}
+        <table class="table">
+        <tbody>
+            <tr>
+                <td align="center"><b>Usuari</b></td>
+                <td align="center">{{review.user.username}}</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Comentari</b></td>
+                <td align="center">{{review.comment}}</td>
+            </tr>
+            <tr align="center">
+                <td align="center" colspan="2"><span class="badge badge-pill badge-primary" style="width: 6rem;height: 1rem;"> {{review.restaurant_rate}}</span></td>
+            </tr>
+        </tbody>
+        </table>
+        <hr>
+    {% endfor %}
+    
+{% else %}
+    <p>No hi han reviews.</p>
+{% endif %}
+<div align="center">
+<form action="/review/{{restaurant.restaurant_number}}" method="get">
+    <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Review </button>
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}
+</body>
+</html>

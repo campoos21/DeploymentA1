@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+<div class = "row">
+    <div class="col-6 col-md-2" >
+
+    </div>
+    <div class="col-6 col-md-5" >
+    	{% if reservations_futures %}
+    	
+    		{%for reserva in reservations_futures%}
+    			<form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="rest" value="{{reserva.id}}">
+
+                <p>{{reserva.restaurant.name}} , {{reserva.day}}
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Delete </button></p>
+                </form>
+    		{%endfor%}
+    	{%else%}
+    	{%endif%}
+    </div>
+    <div class="col-6 col-md-5" >
+        {% if reservations_pasades %}
+            
+            {%for reserva in reservations_pasades%}
+                
+                <form action="/review/{{reserva.restaurant.restaurant_number}}" method="get">
+                <p>{{reserva.restaurant.name}} , {{reserva.day}}
+                <button type = "submit" class="btn btn-outline-primary" size="20" style="width: 200px"> Review </button></p>
+                </form>
+                
+            {%endfor%}
+        {%else%}
+        {%endif%}
+    </div>
+</div>
+
+
+
+{%endblock%}
+</body>
+</html>

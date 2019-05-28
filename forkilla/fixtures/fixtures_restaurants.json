@@ -1,0 +1,206 @@
+[
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 1,
+    "fields": {
+      "restaurant_number": "09186777",
+      "name": "Only Tapas",
+      "menu_description" :"TAPAS",
+      "price_average" : "30",
+      "is_promot" : "False",
+      "rate" : "10",
+      "category" : "Medi",
+      "city": "Barcelona",
+      "address": "Les Rambles, 33",
+      "country": "Spain",
+      "capacity": 40
+    }
+  },
+   {
+    "model": "forkilla.Restaurant",
+    "pk": 2,
+    "fields": {
+      "restaurant_number": "09186666",
+      "name": "Pinxos",
+      "menu_description" :"PINXO",
+      "price_average" : "50",
+      "is_promot" : "True",
+      "rate" : "4",
+      "category" : "Basq",
+      "city": "Madrid",
+      "address": "Gran Via de les Corts Catalanes, 495",
+      "country": "Spain",
+      "capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 3,
+    "fields": {
+      "restaurant_number": "09186667",
+      "name": "Only Pinxos",
+      "menu_description" :"PINXOS",
+      "price_average" : "130.33",
+      "is_promot" : "True",
+      "rate" : "9.6",
+      "category" : "Basq",
+      "city": "Barcelona",
+      "address": "Gran Via de les Corts Catalanes, 495",
+      "country": "Spain",
+      "capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 4,
+    "fields": {
+      "restaurant_number": "00186777",
+      "name": "McDonalds",
+      "menu_description" :"Burger",
+      "price_average" : "10",
+      "is_promot" : "False",
+      "rate" : "7",
+      "category" : "BBQ",
+      "city": "Barcelona",
+      "address": "Placa Catalunya, 33",
+      "country": "Spain",
+      "capacity": 500
+    }
+  },
+   {
+    "model": "forkilla.Restaurant",
+    "pk": 5,
+    "fields": {
+      "restaurant_number": "091866546",
+      "name": "Torradeta",
+      "menu_description" :"Sandwich",
+      "price_average" : "5",
+      "is_promot" : "True",
+      "rate" : "9",
+      "category" : "Medi",
+      "city": "Madrid",
+      "address": "Calle colon, 495",
+      "country": "Spain",
+      "capacity": 70
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 6,
+    "fields": {
+      "restaurant_number": "09123667",
+      "name": "Mexican",
+      "menu_description" :"Burritos",
+      "price_average" : "100",
+      "is_promot" : "True",
+      "rate" : "5",
+      "category" : "Mexi",
+      "city": "Paris",
+      "address": "Baguette, 495",
+      "country": "France",
+      "capacity": 20
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 7,
+    "fields": {
+      "restaurant_number": "03181227",
+      "name": "Durum Kebab",
+      "menu_description" :"Kebab",
+      "price_average" : "3",
+      "is_promot" : "True",
+      "rate" : "10",
+      "category" : "Turk",
+      "city": "Berlin",
+      "address": "Nein, 67",
+      "country": "Germany",
+      "capacity": 5
+    }
+  },
+   {
+    "model": "forkilla.Restaurant",
+    "pk": 8,
+    "fields": {
+      "restaurant_number": "02186666",
+      "name": "Fosters Hollywood",
+      "menu_description" :"Steaks and Burgers",
+      "price_average" : "20",
+      "is_promot" : "True",
+      "rate" : "8",
+      "category" : "BBQ",
+      "city": "Londres",
+      "address": "Fish and Chips, 495",
+      "country": "England",
+      "capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 9,
+    "fields": {
+      "restaurant_number": "03186667",
+      "name": "Bazar",
+      "menu_description" :"Oriental",
+      "price_average" : "15",
+      "is_promot" : "True",
+      "rate" : "2",
+      "category" : "Chin",
+      "city": "Chin",
+      "address": "Alos, 495",
+      "country": "China",
+      "capacity": 1000
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 10,
+    "fields": {
+      "restaurant_number": "05186777",
+      "name": "Cerdito",
+      "menu_description" :"Calamares y oreja",
+      "price_average" : "7",
+      "is_promot" : "False",
+      "rate" : "4",
+      "category" : "Medi",
+      "city": "Madrid",
+      "address": "Bernabeu, 33",
+      "country": "Spain",
+      "capacity": 40
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 11,
+    "fields": {
+      "restaurant_number": "01186626",
+      "name": "Le Crusan",
+      "menu_description" :"omelette",
+      "price_average" : "12",
+      "is_promot" : "True",
+      "rate" : "6",
+      "category" : "Crep",
+      "city": "Paris",
+      "address": "Eifel, 495",
+      "country": "France",
+      "capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 12,
+    "fields": {
+      "restaurant_number": "04186667",
+      "name": "Hots Dogs",
+      "menu_description" :"Dogs",
+      "price_average" : "300",
+      "is_promot" : "True",
+      "rate" : "10",
+      "category" : "Chin",
+      "city": "Pekin",
+      "address": "HachikoS, 495",
+      "country": "China",
+      "capacity": 15
+    }
+  }
+]

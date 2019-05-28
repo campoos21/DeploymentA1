@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<div class="row">
+<div class="col-6 col-md-2"></div>
+<div class="col-6 col-md-6" style="margin-top:2%;">
+<h1 class="display-4" align="center" style="color:#041CFA;font-size:100px;">Forkilla</h1>
+</div>
+<div class="col-6 col-md-4" id="cont" align="right"style="margin-top:1%;">
+
+{%if request.user.is_authenticated%}
+<div class="badge badge-primary text-wrap" style="width: 10rem;height: 2rem;vertical-align:middle;">
+  <h5>{{request.user.username}}</h5>
+</div>
+<form action="{%url 'logout'%}" method="get" style="display:inline;">
+	<button type = "submit" class="btn btn-outline-primary"> Logout </button>
+</form>
+<form action="{%url 'reservationlist'%}" method="get" style="display:inline;">
+	<button type = "submit" class="btn btn-outline-primary"> Reservas </button>
+</form>
+
+{%else%}
+<form action="{%url 'login'%}" method="get" style="display:inline;">
+	<button type = "submit" class="btn btn-outline-primary"> Login </button>
+</form>
+<form action="{%url 'register'%}" method="get" style="display:inline;">
+	<button type = "submit" class="btn btn-outline-primary"> Register </button>
+</form>
+{%endif%}
+<form action="{%url 'restaurants'%}" method="get">
+	<br>
+	<div class="input-group mb-3">
+		<input type = "text" name = "q" class="form-control" placeholder="Ciutat" style="background-color: #ACFAEE;" aria-describedby="button-addon2">
+		<div class = "input-group-append">
+			<button type = "submit" value= q class="btn btn-outline-primary"> Search </button>
+		</div>
+	</div>
+</form>
+
+</div>
+</div>
+<hr>
+{% block content %}
+{% endblock %}
+<hr>
+<footer align="center">
+<div class="row">
+<div class="col-6 col-md-4"></div>
+<div class="col-6 col-md-4">
+<div class="alert alert-success" role="alert"><h4 class="alert-heading"> Your last viewed Restaurants</h4></div>
+<table class="table">
+	<tbody>
+	<form action="{% url 'reservation'%}" method="get">
+	{% for restaurant in viewedrestaurants.restaurantinsertdate_set.all|slice:"5"%}
+		<tr><td>
+		<a href="{% url 'detail' restaurant.restaurant.restaurant_number%}"> 	{{restaurant.restaurant.name}} </a> <span class="badge badge-pill badge-primary">{{restaurant.restaurant.rate}}</span>
+		<button type="submit" name="reservation" value={{restaurant.restaurant.restaurant_number}} class="btn btn-outline-primary"> 	Reserva</button>
+		</td></tr>
+	{% endfor %}
+ 	</form>
+ 	</tbody>
+ </table>
+</div>
+<div class="col-6 col-md-4"></div>
+</div>
+</footer>
+</body>
+</html>

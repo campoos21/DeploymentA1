@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body style="background-color:#ACFAEE;">
+{% extends 'forkilla/base.html' %}
+
+{% block content %}
+<div align="center">
+<h2> Starting reservation for restaurant {{restaurant.name}}</h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+    </form>
+</div>
+{% endblock %}
+</body>
