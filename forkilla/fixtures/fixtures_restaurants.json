@@ -71,7 +71,7 @@
     "model": "forkilla.Restaurant",
     "pk": 5,
     "fields": {
-      "restaurant_number": "091866546",
+      "restaurant_number": "09186546",
       "name": "Torradeta",
       "menu_description" :"Sandwich",
       "price_average" : "5",
