@@ -99,7 +99,6 @@ def reservation(request):
 					request.session["reservation"] = resv.id
 					request.session["result"] = "OK"
 					#"Netejar" variables com ferho xd xd
-
 			else:
 				request.session["result"] = form.errors
 				return HttpResponseRedirect(reverse('checkout'))
