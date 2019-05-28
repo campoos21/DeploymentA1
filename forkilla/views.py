@@ -168,18 +168,17 @@ def review(request,restaurant_number = ''):
 			comm.restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
 			comm.user = request.user
 			comm.save()
-	        request.session["comment"] = comm.id
-	        return HttpResponseRedirect(reverse('restaurants'))
+			request.session["comment"] = comm.id
+			return HttpResponseRedirect(reverse('restaurants'))
 	if request.method == "GET":
 		viewedrestaurants = _check_session(request)
 		form = ReviewForm()
 		request.session["restaurant_number"] = restaurant_number
-		context = {
-			'num':restaurant_number,
-			'viewedrestaurants': viewedrestaurants,
-			'form':form
-		}
-
+	context = {
+		'num':restaurant_number,
+		'viewedrestaurants': viewedrestaurants,
+		'form':form
+	}
 	return render(request, 'forkilla/review.html', context)
 
 def register(request):
