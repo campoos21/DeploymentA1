@@ -101,19 +101,19 @@ def reservation(request):
 					#"Netejar" variables com ferho xd xd
 			else:
 				request.session["result"] = form.errors
-				return HttpResponseRedirect(reverse('checkout'))
+			return HttpResponseRedirect(reverse('checkout'))
 
 		elif request.method == "GET":
 			restaurant_number = request.GET["reservation"]
 			restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
 			request.session["reserved_restaurant"] = restaurant_number
 
-		form = ReservationForm()
-		context = {
-			'restaurant': restaurant,
-			'viewedrestaurants': viewedrestaurants,
-			'form': form
-		}
+			form = ReservationForm()
+			context = {
+				'restaurant': restaurant,
+				'viewedrestaurants': viewedrestaurants,
+				'form': form
+			}
 
 	except Restaurant.DoesNotExist:
 		return HttpResponse("Restaurant Does not exists")
