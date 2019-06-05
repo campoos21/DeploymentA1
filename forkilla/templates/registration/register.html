@@ -1,11 +1,27 @@
-{% block title %}Create an account{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
 
+
+<div class = "row" style="margin-top:15%">
+<div class="col-6 col-md-4" >
+</div>
+<div class="col-6 col-md-4" style="border:1px solid blue;">
 {% block content %}
   <h1>Create an account</h1>
 
   <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-      <input type="submit" value="Create the account">
+	<input type="submit" value="Create the account" class="btn btn-outline-primary">
   </form>
 {% endblock %}
+</div>
+<div class="col-6 col-md-4" >
+</div>
+
+
+</body></html>

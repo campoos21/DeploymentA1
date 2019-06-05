@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#ACFAEE;">
+<div class = "row" style="margin-top:15%">
+<div class="col-6 col-md-4" >
+</div>
+  <div class="col-6 col-md-4" style="border:1px solid blue;">
 {% block content %}
 
   {% if form.errors %}
@@ -6,12 +16,30 @@
 
   <form action="" method="post">
     {% csrf_token %}
-    <label for="username">User name:</label>
-    <input type="text" name="username" value="" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password">
-    <input type="hidden" name="next" value="{{ next|escape }}" />
-    <input type="submit" value="login" />
+    <table class="table"><br>
+      <tbody><tr><td align="center">
+        <h1><span class="badge badge-pill badge-primary">LOGIN</span></h1>
+      </td></tr>
+      <tr><td align="center">
+    <label for="username"><span class="badge badge-pill badge-primary">User name:</span></label>
+    <input type="text" name="username" value="" id="username" class="btn btn-outline-primary"><br>
+    </td></tr>
+      <tr><td align="center">
+    <label for="password"><span class="badge badge-pill badge-primary">Password:</span></label> 
+    <input type="password" name="password" value="" id="password" class="btn btn-outline-primary">
+    </td></tr>
+    <tr><td align="center">
+    <input type="hidden" name="next" value="{{ next|escape }}" /><br>
+    <input type="submit" value="login" class="btn btn-outline-primary"/>
+  </td></tr>
+  <tr><td></td></tr></tbody>
+    </table>
   </form>
 
 {% endblock %}
+</div>
+<div class="col-6 col-md-4" >
+</div>
+
+</body>
+</html>

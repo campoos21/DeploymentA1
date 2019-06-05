@@ -38,24 +38,38 @@
             </td></tr><tr><td></td></tr></tbody></table>
         {% endif %}
     </div>
-    <div class="col-6 col-md-6">
+    <div class="col-6 col-md-8">
         {% if restaurants %}
             <h2>Restaurants</h2>
-            <ul>
-            <form action="{% url 'reservation'%}" method="get">
+            <div class="card-deck-wrapper" style = "display:grid;grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));grid-gap: 0%;">
+
+            
              {% for restaurant in restaurants %}
-                <a href="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}"> {{restaurant.get_human_category}}</a> <br>
-               <a href="{% url 'detail' restaurant.restaurant_number%}"> {{restaurant.name}} </a> : {{restaurant.menu_description}}
-                <button type="submit" name="reservation" value={{restaurant.restaurant_number}} class="btn btn-outline-primary"> Reserva</button>
-                <br>
+                <div class="card" style="width: 18rem;">
+                    {%if restaurant.is_promot == True %}
+                        <h5 class="card-header">Promoted</h5>
+                    {%endif%}
+                {% load static %}
+                <img src="{% static restaurant.featured_photo.url %}" class="card-img-top" alt="Foto restaurant" width="400" height="300">
+                    <div class="card-body">
+                        <form action="{% url 'reservation'%}" method="get">
+                        <h5 class="card-title">{{restaurant.name}}</h5>
+                        <a href="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}" class="btn btn-outline-primary"> {{restaurant.get_human_category}}</a>
+                        <a href="{% url 'detail' restaurant.restaurant_number%}" class="btn btn-primary">
+                        Info</a>
+                        
+                        <button type="submit" name="reservation" value={{restaurant.restaurant_number}} class="btn btn-outline-primary"> Reserva</button>
+                        </form>
+                    </div>
+                </div>
             {% endfor %}
-            </form>
-            </ul>
+            
             {% else %}
             <p>No restaurants are available.</p>
         {% endif %}
     </div>
-    <div class="col-6 col-md-4">
+</div>
+    <div class="col-6 col-md-2">
     </div>
 </div>
 {% endblock %}

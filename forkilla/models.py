@@ -41,7 +41,7 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    featured_photo = models.ImageField(upload_to="forkilla/static/fotos/",default='forkilla/static/fotos/default.png')
+    featured_photo = models.ImageField(upload_to="static/fotos/",default='forkilla/static/fotos/default.png')
     category = models.CharField(max_length=5, choices=CATEGORIES)
     capacity = models.PositiveIntegerField()
     

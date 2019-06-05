@@ -206,12 +206,11 @@ def reservationlist(request):
 	}
 	return render(request,'forkilla/resvlist.html',context)
 
-def comparator(request):
-	if request.method =='POST':
-		form = RestaurantForm(request.POST)
-	else:
-		form=RestaurantForm()
-	return render(request,'forkilla/comparator.html',{'form':form})
+def comparator(request,ips):
+	context = {
+		'ips' : ips
+	}
+	return render(request,'forkilla/comparator.html',context)
 
 class RestaurantViewSet(viewsets.ModelViewSet):
 
@@ -226,7 +225,7 @@ class RestaurantViewSet(viewsets.ModelViewSet):
 		queryset = Restaurant.objects.all()
 		category = self.request.query_params.get('category',None)
 		city = self.request.query_params.get('city',None)
-		price_average = self.request.query_params.get('price_average',None)
+		price_average = self.request.query_params.get('price',None)
 		print(category)
 		print(city)
 		print(price_average)

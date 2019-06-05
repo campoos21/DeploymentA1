@@ -18,17 +18,23 @@
         </form>
         </td></tr><tr><td></td></tr></tbody></table>
     </div>
-    <div class="col-6 col-md-6">
+    <div class="col-6 col-md-8">
     	<h2>Promoted Restaurants</h2>
-		<ul>
-        {% for restaurant in restaurants %}
-            <a href="/forkilla/restaurants/{{restaurant.city}}/{{restaurant.category}}"> {{restaurant.get_human_category}}</a> <br>
-            <a href="{% url 'detail' restaurant.restaurant_number%}"> {{restaurant.name}} </a> : {{restaurant.menu_description}}
-            <br>
+            <div class="card-deck-wrapper" style = "display:grid;grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));grid-gap: 0%;">
+            {% for restaurant in restaurants %}
+            <div class="card" style="width: 18rem;">
+                {% load static %}
+                <img src="{% static restaurant.featured_photo.url %}" class="card-img-top" alt="Foto restaurant" width="400" height="300">
+                <div class="card-body">
+                    <h5 class="card-title">{{restaurant.name}}</h5>
+                    <p  class="card-text">{{restaurant.category}}</p>
+                    <a href="{% url 'detail' restaurant.restaurant_number%}" class="btn btn-primary">Info</a>
+                </div>
+            </div>
         {% endfor %}
-        </ul>
     </div>
-    <div class="col-6 col-md-4">
+    </div>
+    <div class="col-6 col-md-2">
     </div>
 </div>
 

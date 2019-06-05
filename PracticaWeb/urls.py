@@ -23,9 +23,9 @@ from forkilla import views
 router = routers.DefaultRouter()
 router.register(r'restaurants', views.RestaurantViewSet)
 router.register(r'reviews' ,views.ReviewsViewSet)
-router.register(r'restaurants/(?P<category>.*)/$',views.RestaurantViewSet)
-router.register(r'restaurants/(?P<category>.*)&/(?P<city>.*)/$',views.RestaurantViewSet)
-router.register(r'restaurants/(?P<category>.*)/(?P<city>.*)/(?P<price_average>.*)/$',views.RestaurantViewSet)
+#router.register(r'restaurants/(?P<category>.*)/$',views.RestaurantViewSet)
+#router.register(r'restaurants/(?P<category>.*)&/(?P<city>.*)/$',views.RestaurantViewSet)
+#router.register(r'restaurants/(?P<category>.*)/(?P<city>.*)/(?P<price_average>.*)/$',views.RestaurantViewSet)
 
 #router.register(r'users/', views.UserList.as_view()),
 #router.register(r'users/<int:pk>/', views.UserDetail.as_view()),

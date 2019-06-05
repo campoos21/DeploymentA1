@@ -1,7 +1,8 @@
 from django.conf.urls import url
 
 from . import views
-listOfAddresses = ["161.116.56.65","161.116.56.165"]
+#listOfAddresses = ["161.116.56.65","161.116.56.165","localhost:8000","sd2019-forkillaa1.herokuapp.com"]
+listOfAddresses = ["localhost:8000"]
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^restaurants/$', views.restaurants, name='restaurants'),
@@ -13,5 +14,5 @@ urlpatterns = [
     url(r'^review/(?P<restaurant_number>.*)/$', views.review, name='review'),
     url(r'^register/$', views.register, name='register'),
     url(r'^reservas/$', views.reservationlist,name='reservationlist'),
-    url(r'^comparator$', views.comparator)
+    url(r'^comparator$', views.comparator,{'ips':listOfAddresses})
 ]

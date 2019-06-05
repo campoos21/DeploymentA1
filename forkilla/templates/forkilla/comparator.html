@@ -2,6 +2,36 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+    function compare(ips){
+    	document.getElementById("prova").innerHTML = "jeje";
+        var output="";
+        for(var i=0;i < ips.length;i++){
+            $.ajax({
+                url: 'https://' + ips[i] + '/api/restaurants/?'+'category='+ $("#category").val()+"&city="+ $("#city").val()+"&price="+ $("#price").val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    output+="URL Requested:: "+this.url+"<br>";
+                    for(var j =0; j < data.results.length; j++){
+                        output+=data['results'][j]['category']+"<br>";
+                        output+=data['results'][j]['city']+"<br>";
+                        output+=data['results'][j]['price']+"<br>";
+                    }
+                    $("#output").append(output+"<hr>");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $("#output").append("URL Requested: "+this.url+"<br>");
+                    $("#output").append(textStatus+" "+jqXHR.status+" "+errorThrown+"<hr>");
+                },
+            });
+        }
+    }
+    </script>
+
+
 
 </head>
 <body style="background-color:#ACFAEE;">
@@ -12,8 +42,16 @@
 	<div class="col-6 col-md-2" >
 	</div>
 	<div class="col-6 col-md-5" >
-	<h2> Busca restaurants a altres webs: {{restaurant.name}}</h2>
-    <button class="btn btn-outline-primary">Buscar</button>
+	<h2> Busca restaurants a altres webs:</h2>
+	<p id="prova">jejejejejejejejejejejejejeje</p>
+    <input type="TextField" class="form-control" name="category" id="category" placeholder="Category" ><br>
+    <input type="TextField" class="form-control" name="category" id="city" placeholder="City" ><br>
+    <input type= "IntegerField" class="form-control" name="price" id="price" placeholder="Max Price" ><br>
+    <hr>
+    <input type="button" id="button" value="Compare" class="btn btn-primary" onclick="compare({{ ips }})">
+
+    <center><div id=output class=""></div></center>
+
 	</div>
 	<div class="col-6 col-md-4" >
 	</div>

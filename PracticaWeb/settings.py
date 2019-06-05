@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-import django_heroku
+
 import os
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,9 +26,9 @@ SECRET_KEY = 'j4!ohacm-w9^&%!jv^!=d5e)3-k+#ioa&luuzhfmlpthdi10yh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-
-
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com','localhost']
+#ALLOWED_HOSTS = []
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -52,6 +54,7 @@ REST_FRAMEWORK = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,8 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-]
+]#    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ROOT_URLCONF = 'PracticaWeb.urls'
 
@@ -85,7 +87,7 @@ WSGI_APPLICATION = 'PracticaWeb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -95,6 +97,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
         'CONN_MAX_AGE': 500
+    }
+}"""
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -138,17 +148,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #STATIC_TMP = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "forkilla/static"),
+    os.path.join(BASE_DIR, "forkilla/"),
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, "forkilla/")
 
-MEDIA_URL = '/media/'
+MEDIA_URL = ''
 
 LOGIN_REDIRECT_URL = '/forkilla/'
 LOGIN_URL = '/accounts/login/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 
